@@ -3,17 +3,18 @@ object tom {
     
     method energia() = energia
     method velocidadMaxima() = 5 + energia / 10
+    method puedeCazarADistancia(unaDistancia) = (energia >= unaDistancia/2)
     
-    method comerRaton(unRaton){
+    method comer(unRaton){
         energia += 12 + unRaton.peso()
     }
     method correr(distancia){
         energia -= distancia/2
     }
-    method puedeCazarADistancia(unaDistancia) = (energia >= unaDistancia/2)
-    method comerRatonADistancia(unRaton, unaDistancia){
+    method comerADistancia(unRaton, unaDistancia){
         if (self.puedeCazarADistancia(unaDistancia)){
-            self.comerRaton(unRaton)
+            self.correr(unaDistancia)
+            self.comer(unRaton)
         }
     }
 }
@@ -32,4 +33,11 @@ object nibbles {
     method peso() = 35
 }
 
-// Inventar otro ratón
+object billGates {
+    var peso = 33
+    method peso() = peso
+
+    method correr(distancia){
+        peso -= 1 + distancia/2
+    }
+}

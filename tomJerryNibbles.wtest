@@ -2,44 +2,56 @@ import tomJerryNibbles.*
 
 describe "testeos de Tom" {
 
-  test "velocidad maxima inicial de Tom" {
+  test "Velocidad maxima inicial de Tom" {
     assert.equals(10, tom.velocidadMaxima())
   }
 
-  test "Si come a Jerry, la velocidad máxima pasa a ser 15.2, su energía es 102" {
-    tom.comerRaton(jerry)
+  test "Si Tom come a Jerry, la velocidad máxima pasa a ser 15.2, su energía es 102" {
+    tom.comer(jerry)
     assert.equals(102, tom.energia())
   }
 
-  test "tom corre 24 metros despues de comer a jerry, su energía es 90" {
-    tom.comerRaton(jerry)
+  test "Si Tom corre 24 metros despues de comer a jerry, su energía es 90" {
+    tom.comer(jerry)
     tom.correr(24)
     assert.equals(90, tom.energia())
   }
 
-  test "si come a nibbels la energia de Tom es 137"{
-    tom.comerRaton(jerry)
+  test "Si Tom come a nibbels la energia de Tom es 137"{
+    tom.comer(jerry)
     tom.correr(24)
-    tom.comerRaton(nibbles)
+    tom.comer(nibbles)
     assert.equals(137, tom.energia())
   }
 
-  test "si jerry cumple años y se lo vuelve a comer, su energia es 209"{
-    tom.comerRaton(jerry)
+  test "Si jerry cumple años y se lo vuelve a comer, su energia es 209"{
+    tom.comer(jerry)
     tom.correr(24)
-    tom.comerRaton(nibbles)
+    tom.comer(nibbles)
     jerry.cumplirAños()
-    tom.comerRaton(jerry)
+    tom.comer(jerry)
     assert.equals(209, tom.energia())
   }
 
-  test "si corre 38 metros su velocidad pasa a ser 24 (su energia es 190)"{
-    tom.comerRaton(jerry)
+  test "Si Tom corre 38 metros su velocidad pasa a ser 24 (su energia es 190)"{
+    tom.comer(jerry)
     tom.correr(24)
-    tom.comerRaton(nibbles)
+    tom.comer(nibbles)
     jerry.cumplirAños()
-    tom.comerRaton(jerry)
+    tom.comer(jerry)
     tom.correr(38)
     assert.equals(190, tom.energia())
+  }
+
+  test "Si Tom corre una distacia de 10 y se come a jerry su energía es 97"{
+    tom.comerADistancia(jerry, 10)
+    assert.equals(97, tom.energia())
+  }
+
+  test "Tom se come a BillGates después de perseguirlo"{
+    tom.correr(20)
+    billGates.correr(10)
+    tom.comerADistancia(billGates, 10)
+    assert.equals(74, tom.energia())
   }
 }
